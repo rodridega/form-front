@@ -2,9 +2,9 @@ import { Dispatch, FC, ReactNode, SetStateAction, createContext, useState } from
 import api from "../api";
 
 export interface User {
-    name: string,
-    phoneNumber: string
-    email: string,
+    nombre: string,
+    telefono: string
+    correo: string,
     usuarioId?: number
 }
 
@@ -25,9 +25,9 @@ export const AuthContext = createContext<AuthContextProps>({} as AuthContextProp
 export const AuthProvider: FC<Props> = ({ children }) => {
 
     const [user, setUser] = useState<User>({
-        name: '',
-        phoneNumber: '',
-        email: '',
+        nombre: '',
+        telefono: '',
+        correo: '',
         usuarioId: undefined
     })
     const [error, setError] = useState<string>('')
@@ -35,7 +35,7 @@ export const AuthProvider: FC<Props> = ({ children }) => {
 
 
     const signIn = async (user: User): Promise<void> => {
-        if (user.email === '' || user.name === '' || user.phoneNumber === '') {
+        if (user.correo === '' || user.nombre === '' || user.telefono === '') {
             setError('Todos los campos son obligatorios')
             return
         }

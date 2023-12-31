@@ -11,9 +11,10 @@ export const Login = () => {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    console.log(user);
+    
     try {
       signIn(user)
-
     } catch (error) {
       console.log(error);
     }
@@ -24,10 +25,10 @@ export const Login = () => {
   return (
     <MainLayout>
       <section>
-        <form onSubmit={handleLogin}>
-          <Input setFormData={setUser} name={'name'} label={'¿Como es tu nombre?'} />
-          <Input setFormData={setUser} name={'phoneNumber'} label={'Nro de telefono'} />
-          <Input setFormData={setUser} name={'email'} label={'Correo electronico'} />
+        <form onSubmit={handleLogin} className='bg-dorado'>
+          <Input setFormData={setUser} name={'nombre'} label={'¿Como es tu nombre?'} />
+          <Input setFormData={setUser} name={'telefono'} label={'Nro de telefono'} />
+          <Input setFormData={setUser} name={'correo'} label={'Correo electronico'} />
           <button>
             Ingresar
           </button>
