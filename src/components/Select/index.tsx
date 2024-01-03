@@ -23,7 +23,7 @@ export const Select: FC<Props> = ({ options, label, setFormData, name }) => {
 
     return (
         <div className="lg:flex lg:flex-col">
-            <label className='text-vivvi font-semibold text-lg w-full'> {label} </label>
+            <label className='text-vivvi font-semibold text-base lg:text-lg w-full'> {label} </label>
             <select className='rounded h-8 w-full' name={name} onChange={handleSelectChange}>
                 <option defaultValue={''}></option>
                 {options.map(option => <option value={option.value ? option.value : option.label} key={option.label}> {option.label} </option>)}

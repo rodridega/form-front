@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react'
 import { FormData } from '../../types/FormData';
 import axios from 'axios';
+import logo from '../../assets/logo.png'
 import { MainLayout } from '../../layouts';
 import { Input, Select } from '../../components';
 import { AuthContext } from '../../context/AuthContext';
@@ -48,6 +49,10 @@ export const HomePage = () => {
 
     return (
         <MainLayout>
+            <div className='flex items-center w-full justify-center'>
+                <img src={logo} alt='log' className='w-1/4 m-6 lg:w-1/12' />
+                <h1 className='hidden lg:block text-white text-5xl'>Elige como quieres vivir!</h1>
+            </div>
             <form className='grid lg:grid-cols-2 gap-2 bg-dorado rounded-md p-2 lg:p-10 lg:gap-10'>
 
                 <Select setFormData={setFormData} name={'product'} label={'Producto'} options={[{ label: 'VIS' }, { label: 'Usado' }, { label: 'Pack VIS' }]} />
@@ -67,8 +72,8 @@ export const HomePage = () => {
                 <Select setFormData={setFormData} name={'interest'} label={'¿Ya has realizado alguna cotización aparte de esta?'} options={[{ label: 'No' }, { label: 'Si' }]} />
                 <Select setFormData={setFormData} name={'advantages'} label={'¿Estas buscando algo que no hayas encontrado en otra cotización'} options={[{ label: 'No' }, { label: 'Si' }]} />
             </form>
-            <div className='grid place-content-center'>
-                <button className='bg-dorado my-2 p-4 rounded-md text-vivvi text-2xl lg:w-72' type='submit' onClick={handleSubmit}>Enviar</button>
+            <div className='lg:flex lg:justify-center'>
+                <button className='bg-dorado w-full my-2 p-4 rounded-md text-vivvi text-2xl lg:w-96' type='submit' onClick={handleSubmit}>Enviar</button>
             </div>
         </MainLayout>
     )
