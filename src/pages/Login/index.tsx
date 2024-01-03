@@ -26,7 +26,7 @@ export const Login = () => {
   return (
     <MainLayout>
       <section className='flex flex-col items-center justify-between'>
-        <div className='w-1/2'>
+        <div className='w-1/2 lg:w-full lg:grid lg:place-content-center'>
           <img src={logo} alt='logo' />
         </div>
         <form onSubmit={handleLogin} className='bg-dorado my-12 p-4 rounded-md'>
