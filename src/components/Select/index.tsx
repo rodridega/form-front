@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react"
+import { ChangeEvent, Dispatch, FC, SetStateAction } from "react"
 import { FormData, Option } from "../../types/FormData"
 import { convertToNumber } from "../../helpers/convertToNumber";
 
@@ -12,7 +12,7 @@ interface Props {
 
 export const Select: FC<Props> = ({ options, label, setFormData, name }) => {
 
-    const handleSelectChange = (e) => {
+    const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setFormData((prevState) => {
             return {
                 ...prevState,

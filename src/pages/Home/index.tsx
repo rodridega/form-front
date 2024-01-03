@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { FormEvent, useContext, useState } from 'react'
 import { FormData } from '../../types/FormData';
 import axios from 'axios';
 import logo from '../../assets/logo.png'
@@ -32,7 +32,7 @@ export const HomePage = () => {
     const { user } = useContext(AuthContext)
     console.log(formData);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent<HTMLButtonElement>) => {
         e.preventDefault()
         axios.post('http://localhost:3000/enviar-respuesta', { usuarioId: user.usuarioId, respuestas: Object.values(formData) })
             .then((data) => console.log(data)
