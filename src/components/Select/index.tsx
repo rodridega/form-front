@@ -6,17 +6,23 @@ interface Props {
     options: Option[],
     label: string,
     name: string,
+    multiply: number,
+    questionNumber: number
     setFormData: Dispatch<SetStateAction<FormData>>
 }
 
 
-export const Select: FC<Props> = ({ options, label, setFormData, name }) => {
+export const Select: FC<Props> = ({ options, label, setFormData, name, questionNumber, multiply }) => {
 
     const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setFormData((prevState) => {
             return {
                 ...prevState,
-                [e.target.name]: convertToNumber(e.target.value) 
+                [e.target.name]: {
+                    questionNumber: questionNumber,
+                    responseValue: convertToNumber(e.target.value),
+                    responseScore: convertToNumber(e.target.value) * multiply
+                }
             };
         });
     };

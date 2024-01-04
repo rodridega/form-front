@@ -2,10 +2,10 @@ import { createContext, Dispatch, FC, ReactNode, SetStateAction, useState } from
 import api from "../api";
 
 export interface User {
-    nombre: string;
-    telefono: string;
-    correo: string;
-    usuarioId?: number;
+    name: string;
+    number: string;
+    email: string;
+    userId?: number;
 }
 
 export interface AuthContextProps {
@@ -24,26 +24,26 @@ export const AuthContext = createContext<AuthContextProps>({} as AuthContextProp
 
 export const AuthProvider: FC<Props> = ({ children }) => {
     const [user, setUser] = useState<User>({
-        nombre: '',
-        telefono: '',
-        correo: '',
-        usuarioId: undefined,
+        name: '',
+        number: '',
+        email: '',
+        userId: undefined,
     });
     const [error, setError] = useState<string | undefined>('');
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const signIn = async (user: User): Promise<void> => {
-        if (user.correo === '' || user.nombre === '' || user.telefono === '') {
+        if (user.email === '' || user.name === '' || user.number === '') {
             setError('Todos los campos son obligatorios');
             return;
         }
         try {
-            const response = await api.post('/registrar-usuario', user);
-            localStorage.setItem('user', JSON.stringify({ ...user, usuarioId: response?.data?.usuarioId }));
+            const response = await api.post('/register', user);
+            localStorage.setItem('user', JSON.stringify({ ...user, userId: response?.data?.userId }));
             setUser((prevState) => {
                 return {
                     ...prevState,
-                    usuarioId: response?.data?.usuarioId,
+                    userId: response?.data?.userId,
                 };
             });
             console.log(response);

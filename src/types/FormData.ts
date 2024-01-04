@@ -1,20 +1,26 @@
 export interface FormData {
-    product: string,
-    channel: number,
-    location: number,
-    stakeholder: number,
-    knowTheCustomer: number,
-    intentions: string,
-    realStateDescription: string,
-    realStateArea: string,
-    realStateRoomsAndBaths: string,
-    realStateProjectName: string,
-    timeConstructionCompany: number,
-    timeToStart: number,
-    maxBudgetToInvest: number,
-    budgetNow: number,
-    interest: string,
-    advantages: string
+    product: QuestionData,
+    channel: QuestionData,
+    location: QuestionData,
+    stakeholder: QuestionData,
+    knowTheCustomer: QuestionData,
+    intentions: QuestionData,
+    realStateDescription: QuestionData,
+    realStateArea: QuestionData,
+    realStateRoomsAndBaths: QuestionData,
+    realStateProjectName: QuestionData,
+    timeConstructionCompany: QuestionData,
+    timeToStart: QuestionData,
+    maxBudgetToInvest: QuestionData,
+    budgetNow: QuestionData,
+    interest: QuestionData,
+    advantages: QuestionData
+}
+
+export interface QuestionData {
+    questionNumber: number,
+    responseValue: number,
+    responseScore: number
 }
 
 export interface Option {

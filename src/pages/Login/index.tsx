@@ -9,6 +9,8 @@ export const Login = () => {
 
   const { user, setUser, signIn, isAuthenticated } = useContext(AuthContext)
 
+  console.log(user);
+  
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -30,9 +32,9 @@ export const Login = () => {
           <img src={logo} alt='logo' />
         </div>
         <form onSubmit={handleLogin} className='bg-dorado my-12 p-4 rounded-md'>
-          <Input setFormData={setUser} name={'nombre'} label={'¿Como es tu nombre?'} />
-          <Input setFormData={setUser} name={'telefono'} label={'Nro de telefono'} />
-          <Input setFormData={setUser} name={'correo'} label={'Correo electronico'} />
+          <Input setFormData={setUser} name={'name'} label={'¿Como es tu nombre?'} />
+          <Input setFormData={setUser} name={'number'} label={'Nro de telefono'} />
+          <Input setFormData={setUser} name={'email'} label={'Correo electronico'} />
           <button className='bg-vivvi p-2 rounded w-full my-4 text-white' >
             Ingresar
           </button>

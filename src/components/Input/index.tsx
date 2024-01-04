@@ -5,17 +5,34 @@ import { User } from '../../context/AuthContext';
 interface Props {
     label: string;
     name: string;
+    questionNumber?: number;
     setFormData: Dispatch<SetStateAction<FormData>> | Dispatch<SetStateAction<User>>;
 }
 
-export const Input: FC<Props> = ({ label, name, setFormData }) => {
+export const Input: FC<Props> = ({ label, name, setFormData, questionNumber }) => {
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setFormData((prevState: any) => {
-            return {
-                ...prevState,
-                [e.target.name]: e.target.value
-            };
-        });
+
+        if (!questionNumber) {
+            setFormData((prevState: any) => {
+                return {
+                    ...prevState,
+                    [e.target.name]: e.target.value
+                };
+            });
+        } else {
+            setFormData((prevState: any) => {
+                return {
+                    ...prevState,
+                    [e.target.name]: {
+                        questionNumber: questionNumber,
+                        responseValue: 0,
+                        responseScore: 0
+                    }
+                };
+            });
+        }
+
+
     };
 
     return (
