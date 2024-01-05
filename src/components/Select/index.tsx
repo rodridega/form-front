@@ -28,7 +28,7 @@ export const Select: FC<Props> = ({ options, label, setFormData, name, questionN
     };
 
     return (
-        <div className="lg:flex lg:flex-col">
+        <div className="lg:flex lg:flex-col justify-between">
             <label className='text-vivvi font-semibold text-base lg:text-lg w-full'> {label} </label>
             <select className='rounded h-8 w-full' name={name} onChange={handleSelectChange}>
                 <option defaultValue={''}></option>

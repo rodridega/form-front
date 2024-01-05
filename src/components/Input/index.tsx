@@ -25,8 +25,8 @@ export const Input: FC<Props> = ({ label, name, setFormData, questionNumber }) =
                     ...prevState,
                     [e.target.name]: {
                         questionNumber: questionNumber,
-                        responseValue: 0,
-                        responseScore: 0
+                        responseValue: 1,
+                        responseScore: 1
                     }
                 };
             });
@@ -36,7 +36,7 @@ export const Input: FC<Props> = ({ label, name, setFormData, questionNumber }) =
     };
 
     return (
-        <div>
+        <div > 
             <label className='text-vivvi font-semibold text-base lg:text-lg w-full'> {label} </label>
             <input className='rounded h-8 w-full' name={name} onChange={handleInputChange} />
         </div>

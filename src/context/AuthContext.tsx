@@ -1,4 +1,4 @@
-import { createContext, Dispatch, FC, ReactNode, SetStateAction, useState } from "react";
+import { createContext, Dispatch, FC, ReactNode, SetStateAction, useEffect, useState } from "react";
 import api from "../api";
 
 export interface User {
@@ -14,6 +14,7 @@ export interface AuthContextProps {
     error: string | undefined;
     isAuthenticated: boolean;
     signIn: (user: User) => Promise<void>;
+    setError: Dispatch<SetStateAction<string | undefined>>;
 }
 
 interface Props {
@@ -32,6 +33,24 @@ export const AuthProvider: FC<Props> = ({ children }) => {
     const [error, setError] = useState<string | undefined>('');
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+    useEffect(() => {
+        const localStorageData = localStorage.getItem('user')
+
+        if (localStorageData) {
+            const userLocalStorage: User = JSON.parse(localStorageData)
+            setUser({
+                name: userLocalStorage.name,
+                number: userLocalStorage.number,
+                email: userLocalStorage.email,
+                userId: userLocalStorage.userId
+            })
+            setIsAuthenticated(true)
+
+        }
+
+    }, [])
+
+
     const signIn = async (user: User): Promise<void> => {
         if (user.email === '' || user.name === '' || user.number === '') {
             setError('Todos los campos son obligatorios');
@@ -46,17 +65,19 @@ export const AuthProvider: FC<Props> = ({ children }) => {
                     userId: response?.data?.userId,
                 };
             });
-            console.log(response);
             setIsAuthenticated(true);
         } catch (error: any) {
             console.error(error);
             setError(error.response?.data || 'Error desconocido');
+            setTimeout(() => {
+                setError('')
+            }, 5000);
             setIsAuthenticated(false);
         }
     };
 
     return (
-        <AuthContext.Provider value={{ user, setUser, error, isAuthenticated, signIn }}>
+        <AuthContext.Provider value={{ user, setUser, error, isAuthenticated, signIn, setError }}>
             {children}
         </AuthContext.Provider>
     );

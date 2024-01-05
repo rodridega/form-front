@@ -7,14 +7,10 @@ import logo from '../../assets/logo.png'
 
 export const Login = () => {
 
-  const { user, setUser, signIn, isAuthenticated } = useContext(AuthContext)
-
-  console.log(user);
-  
+  const { user, setUser, signIn, isAuthenticated, error } = useContext(AuthContext)  
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(user);
     
     try {
       signIn(user)
@@ -22,13 +18,14 @@ export const Login = () => {
       console.log(error);
     }
   }
+
   if (isAuthenticated) return <Navigate to={'/'} replace />
 
 
   return (
     <MainLayout>
       <section className='flex flex-col items-center justify-between'>
-        <div className='w-1/2 lg:w-full lg:grid lg:place-content-center'>
+        <div className='w-1/2 lg:w-full grid place-content-center'>
           <img src={logo} alt='logo' />
         </div>
         <form onSubmit={handleLogin} className='bg-dorado my-12 p-4 rounded-md'>
@@ -39,6 +36,7 @@ export const Login = () => {
             Ingresar
           </button>
         </form>
+        {error && <p className='text-center text-white text-2xl'> {error} </p>}
       </section>
     </MainLayout>
   )
