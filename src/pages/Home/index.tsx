@@ -43,7 +43,7 @@ export const HomePage = () => {
         e.preventDefault()
 
         if (validateObject(formData)) {
-            axios.post('http://localhost:3000/save-response', { name: user.name, number: user.number, email: user.email, userId: user.userId, responses: Object.values(formData) })
+            axios.post('https://deep-sort-production.up.railway.app/save-response', { name: user.name, number: user.number, email: user.email, userId: user.userId, responses: Object.values(formData) })
                 .then((data) => {
                     setError('')
                     setSuccess(data.data)

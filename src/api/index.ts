@@ -4,7 +4,7 @@ import axios from "axios";
     baseURL: 'http://localhost:3000'
 }) */
 const api = axios.create({
-    baseURL: 'https://form-production-f761.up.railway.app'
+    baseURL: 'https://deep-sort-production.up.railway.app'
 })
 
 export default api
