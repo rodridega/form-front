@@ -13,8 +13,11 @@ export interface AuthContextProps {
     setUser: Dispatch<SetStateAction<User>>;
     error: string | undefined;
     isAuthenticated: boolean;
+    setIsAuthenticated: Dispatch<SetStateAction<boolean>>
     signIn: (user: User) => Promise<void>;
     setError: Dispatch<SetStateAction<string | undefined>>;
+    setSuccess: Dispatch<SetStateAction<string>>;
+    success: string;
 }
 
 interface Props {
@@ -31,7 +34,8 @@ export const AuthProvider: FC<Props> = ({ children }) => {
         userId: undefined,
     });
     const [error, setError] = useState<string | undefined>('');
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+    const [success, setSuccess] = useState<string>('')
 
     useEffect(() => {
         const localStorageData = localStorage.getItem('user')
@@ -45,7 +49,14 @@ export const AuthProvider: FC<Props> = ({ children }) => {
                 userId: userLocalStorage.userId
             })
             setIsAuthenticated(true)
-
+        } else {
+            setIsAuthenticated(false)
+            setUser({
+                name: '',
+                number: '',
+                email: '',
+                userId: undefined,
+            })
         }
 
     }, [])
@@ -75,9 +86,10 @@ export const AuthProvider: FC<Props> = ({ children }) => {
             setIsAuthenticated(false);
         }
     };
+    
 
     return (
-        <AuthContext.Provider value={{ user, setUser, error, isAuthenticated, signIn, setError }}>
+        <AuthContext.Provider value={{ user, setUser, error, isAuthenticated, signIn, setError, success, setSuccess, setIsAuthenticated }}>
             {children}
         </AuthContext.Provider>
     );

@@ -38,7 +38,7 @@ export const Input: FC<Props> = ({ label, name, setFormData, questionNumber }) =
     return (
         <div > 
             <label className='text-vivvi font-semibold text-base lg:text-lg w-full'> {label} </label>
-            <input className='rounded h-8 w-full' name={name} onChange={handleInputChange} />
+            <input className='rounded border border-vivvi h-8 w-full' name={name} onChange={handleInputChange} />
         </div>
     );
 };
